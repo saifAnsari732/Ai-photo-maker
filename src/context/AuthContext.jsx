@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import ToastContainer from '../components/Toast';
+import ToastContainer, { showToast } from '../components/Toast';
 
 const AuthContext = createContext(null);
 
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const res = await axios.post('/api/auth/login', { email, password });
     const { token, user } = res.data;
-    ToastContainer("Login Successfull")
+     showToast("✅ Login Successful")
     localStorage.setItem('token', token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     setUser(user);
