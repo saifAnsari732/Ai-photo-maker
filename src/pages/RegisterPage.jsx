@@ -92,7 +92,7 @@ export default function RegisterPage() {
             </h1>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold"
               style={{ background:'rgba(245,200,66,0.1)', border:'1px solid rgba(245,200,66,0.2)', color:'#f5c842' }}>
-              🎁 Get <span className="font-black text-sm">10 free tokens</span> on registration!
+              🎁 Get <span className="font-black text-sm">50 free tokens</span> on registration!
             </div>
           </div>
 
@@ -204,7 +204,7 @@ export default function RegisterPage() {
 
             {/* What you get */}
             <div className="grid grid-cols-3 gap-2">
-              {[['🪙','10 Free','Tokens'],['🔒','Secure','Account'],['📸','Instant','Access']].map(([icon, line1, line2]) => (
+              {[['🪙','50 Free','Tokens'],['🔒','Secure','Account'],['📸','Instant','Access']].map(([icon, line1, line2]) => (
                 <div key={line1} className="text-center py-2.5 px-2 rounded-xl"
                   style={{ background:'rgba(255,255,255,0.03)', border:'1px solid rgba(255,255,255,0.05)' }}>
                   <div className="text-lg mb-0.5">{icon}</div>
@@ -232,7 +232,7 @@ export default function RegisterPage() {
                 </>
               ) : (
                 <>
-                  🎁 Create Account & Get 10 Free Tokens
+                  🎁 Create Account & Get 50 Free Tokens
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                   </svg>
