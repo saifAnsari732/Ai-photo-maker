@@ -6,17 +6,33 @@ import DashboardPage from './pages/DashboardPage';
 import AdminPage from './pages/AdminPage';
 import AdminUserDetail from './pages/AdminUserDetail';
 
-const PrivateRoute = ({ children }) => {
+// ✅ Loading spinner — ek jagah define karo
+const Spinner = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div className="spinner" />
+  </div>
+);
+
+// ✅ Logged OUT hona chahiye (login/register)
+const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  if (loading) return <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'100vh'}}><div className="spinner"/></div>;
-  return user ? children : <Navigate to="/login" />;
+  if (loading) return <Spinner />;
+  return user ? <Navigate to="/dashboard" replace /> : children;
 };
 
+// ✅ Logged IN hona chahiye
+const PrivateRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <Spinner />;
+  return user ? children : <Navigate to="/login" replace />;
+};
+
+// ✅ Admin hi access kar sake
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  if (loading) return <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'100vh'}}><div className="spinner"/></div>;
-  if (!user) return <Navigate to="/login" />;
-  if (user.role !== 'admin') return <Navigate to="/dashboard" />;
+  if (loading) return <Spinner />;
+  if (!user) return <Navigate to="/login" replace />;
+  if (user.role !== 'admin') return <Navigate to="/dashboard" replace />;
   return children;
 };
 
@@ -24,11 +40,18 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        {/* "/" pe aaye to smart redirect */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+        {/* Public routes — logged in hain to dashboard */}
+        <Route path="/login"    element={<PublicRoute><LoginPage /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+
+        {/* Private routes */}
         <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
-        <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
+
+        {/* Admin routes */}
+        <Route path="/admin"          element={<AdminRoute><AdminPage /></AdminRoute>} />
         <Route path="/admin/user/:id" element={<AdminRoute><AdminUserDetail /></AdminRoute>} />
       </Routes>
     </BrowserRouter>

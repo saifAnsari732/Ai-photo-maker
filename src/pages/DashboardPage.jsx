@@ -543,7 +543,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ─── FOOTER ───────────────────────────────────── */}
-        <footer className="relative mt-4" style={{ borderTop:'1px solid rgba(255,255,255,0.05)' }}>
+        <footer className="relative mt-4 text-gray-300" style={{ borderTop:'1px solid rgba(255,255,255,0.05)' }}>
           <div className="absolute inset-0 opacity-50" style={{ background:'linear-gradient(180deg, transparent, rgba(0,201,167,0.03))' }} />
           <div className="relative mx-auto px-5 py-10" style={{ maxWidth:900 }}>
             <div className="grid gap-8 mb-8" style={{ gridTemplateColumns:'2fr 1fr 1fr' }}>
@@ -555,19 +555,19 @@ export default function DashboardPage() {
                     PHOTO<span style={{ color:'#00c9a7' }}>-</span>MAKER
                   </span>
                 </div>
-                <p className="text-xs leading-relaxed mb-4" style={{ color:'#334155', maxWidth:260 }}>
+                <p className="text-xs leading-relaxed mb-4" style={{color:'gray', maxWidth:260 }}>
                   Professional passport photo generation platform. AI-powered background removal, enhancement, and print-ready PDF output.
                 </p>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full" style={{ background:'#00c9a7', boxShadow:'0 0 6px rgba(0,201,167,0.6)' }} />
-                  <span className="text-xs font-semibold" style={{ color:'#00c9a7' }}>All systems operational</span>
+                  <span className="text-xs font-semibold" style={{ color:'gray' }}>All systems operational</span>
                 </div>
               </div>
 
               {/* Pipeline */}
               <div>
                 <div className="text-xs font-bold mb-3 tracking-widest uppercase" style={{ color:'#475569' }}>Pipeline</div>
-                <ul className="space-y-2 text-xs" style={{ color:'#334155' }}>
+                <ul className="space-y-2 text-xs" style={{ color:'gray' }}>
                   {['remove.bg — BG Removal', 'cutout.pro — AI Enhance', 'Cloudinary — CDN Storage', 'PDFKit — PDF Export'].map(item => (
                     <li key={item} className="flex items-center gap-2">
                       <span style={{ color:'rgba(0,201,167,0.5)' }}>→</span> {item}
@@ -579,11 +579,11 @@ export default function DashboardPage() {
               {/* Support */}
               <div>
                 <div className="text-xs font-bold mb-3 tracking-widest uppercase" style={{ color:'#475569' }}>Support</div>
-                <ul className="space-y-2 text-xs" style={{ color:'#334155' }}>
+                <ul className="space-y-2 text-xs" style={{ color:'gray' }}>
                   {['Token Recharge', 'Admin Contact', 'Usage Guide', 'FAQs'].map(item => (
                     <li key={item} className="flex items-center gap-2 cursor-pointer transition-colors" style={{ cursor:'pointer' }}>
-                      <span style={{ color:'rgba(0,201,167,0.5)' }}>→</span>
-                      <span className="transition-colors" style={{ color:'#334155' }}
+                      <span style={{ color:'rgba(0,201,167,1.5)' }}>→</span>
+                      <span className="transition-colors" style={{ color:'gray' }}
                         onMouseOver={e => e.target.style.color='#00c9a7'}
                         onMouseOut={e => e.target.style.color='#334155'}>{item}</span>
                     </li>
@@ -594,11 +594,11 @@ export default function DashboardPage() {
 
             {/* Bottom bar */}
             <div className="flex items-center justify-between flex-wrap gap-3 pt-6" style={{ borderTop:'1px solid rgba(255,255,255,0.04)' }}>
-              <div className="text-xs" style={{ color:'#1e293b' }}>
+              <div className="text-xs" style={{ color:'gray' }}>
                 © {new Date().getFullYear()} Photo-Maker. All rights reserved.
               </div>
-              <div className="flex items-center gap-4 text-xs" style={{ color:'#1e293b' }}>
-                <span>Made with <span style={{ color:'#ff4d6d' }}>♥</span> for photo studios</span>
+              <div className="flex items-center gap-4 text-md" style={{ color:'gray' }}>
+                <span>Made with <span style={{ color:'gray' }}>♥</span> for photo studios</span>
                 <div className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background:'#00c9a7' }} />
                   <span>v2.0.0</span>
@@ -641,7 +641,7 @@ export default function DashboardPage() {
                       {label}
                     </button>
                   ))}
-                  <div className="flex items-center px-3 py-2 rounded-xl text-xs" style={{ background:'rgba(255,255,255,0.02)', border:'1px solid rgba(255,255,255,0.05)', color:'#334155' }}>
+                  <div className="flex items-center px-3 py-2 rounded-xl text-xs" style={{ background:'rgba(255,255,255,0.02)', border:'1px solid rgba(255,255,255,0.05)', color:'gray' }}>
                     Koi bhi shape/size
                   </div>
                 </div>
@@ -661,7 +661,7 @@ export default function DashboardPage() {
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold tracking-widest uppercase" style={{ color:'#334155' }}>Zoom</span>
-                  <span className="text-sm font-bold" style={{ color:'#00c9a7' }}>{zoom.toFixed(1)}×</span>
+                  <span className="text-sm font-bold" style={{ color:'gray' }}>{zoom.toFixed(1)}×</span>
                 </div>
                 <input type="range" value={zoom} min={1} max={3} step={0.1}
                   onChange={(e) => setZoom(Number(e.target.value))}

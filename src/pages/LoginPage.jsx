@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
@@ -8,9 +8,10 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [focused, setFocused] = useState('');
-  const { login } = useAuth();
+  const { login,user } = useAuth();
   const navigate  = useNavigate();
 
+ 
   // Auto-fill saved credentials on mount
   useEffect(() => {
     const saved = localStorage.getItem('pm_last_credentials');
@@ -36,7 +37,70 @@ export default function LoginPage() {
       setError(err.response?.data?.message || 'Login failed. Try again.');
     } finally { setLoading(false); }
   };
-
+  // loading 
+  if (loading) return (
+  <div style={{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    background: 'linear-gradient(135deg, #060b14 0%, #0a1628 40%, #0d1f3c 100%)'
+  }}>
+    <div style={{
+      width: '120px',
+      height: '120px',
+      position: 'relative'
+    }}>
+      <div style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        border: '4px solid #e9ecef',
+        borderTopColor: '#4a90e2',
+        borderRadius: '50%',
+        animation: 'spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite'
+      }}/>
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: '24px',
+        fontWeight: 'bold',
+        color: '#4a90e2'
+      }}>⚡</div>
+    </div>
+    <style>{`
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `}</style>
+    <div style={{
+      marginTop: '30px',
+      display: 'flex',
+      gap: '8px'
+    }}>
+      {['L', 'O', 'A', 'D', 'I', 'N', 'G'].map((letter, index) => (
+        <span key={index} style={{
+          fontSize: '24px',
+          fontWeight: '700',
+          color: '#4a90e2',
+          animation: `pulse 1.5s ease-in-out ${index * 0.1}s infinite`,
+          opacity: 0
+        }}>{letter}</span>
+      ))}
+    </div>
+    <style>{`
+      @keyframes pulse {
+        0%, 100% { opacity: 0.3; transform: scale(0.8); }
+        50% { opacity: 1; transform: scale(1.2); color: #764ba2; }
+      }
+    `}</style>
+  </div>
+);
+  if (user) return <Navigate to="/dashboard" replace />;
   return (
     <div
       className="min-h-screen flex items-center justify-center p-5 relative overflow-hidden"
