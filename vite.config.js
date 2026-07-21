@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(),tailwindcss()],
   server: {
     proxy: {
-      '/api': {
+      '/ap': {
         target: 'https://ai-photo-maker-back.onrender.co',
         // target: 'http://localhost:5000',
         changeOrigin: true,
