@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://ai-photo-maker-back.onrender.com',
+        target: 'https://ai-photo-maker-back.onrender.co',
         // target: 'http://localhost:5000',
         changeOrigin: true,
       }
