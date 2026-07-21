@@ -3,7 +3,7 @@ import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
-  const [form, setForm]       = useState({ email: '', password: '' });
+  const [form, setForm]       = useState({ email: '', passw: '' });
   const [error, setError]     = useState('');
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
